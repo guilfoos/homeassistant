@@ -1,0 +1,184 @@
+app_homeassistant:
+  name: Home Assistant
+  entities:
+    - sensor.docker_home_assistant_memory
+    - sensor.docker_home_assistant_status
+    - sensor.docker_home_assistant_state
+    - switch.docker_home_assistant
+
+app_bazarr:
+  name: Bazarr
+  entities:
+    - sensor.docker_bazarr_memory
+    - sensor.docker_bazarr_status
+    - sensor.docker_bazarr_state
+    - switch.docker_bazarr
+
+app_dnsexit:
+  name: DNS Exit
+  entities:
+    - sensor.docker_dnsexit_memory
+    - sensor.docker_dnsexit_status
+    - sensor.docker_dnsexit_state
+    - switch.docker_dnsexit
+
+app_database_home_assistant:
+  name: Database Home Assistant
+  entities:
+    - sensor.docker_db_ha_memory
+    - sensor.docker_db_ha_status
+    - sensor.docker_db_ha_state
+    - switch.docker_db_ha
+
+app_deluge:
+  name: Deluge
+  entities:
+    - sensor.docker_deluge_memory
+    - sensor.docker_deluge_status
+    - sensor.docker_deluge_state
+    - switch.docker_deluge
+
+app_grafana:
+  name: Grafana
+  entities:
+    - sensor.docker_grafana_memory
+    - sensor.docker_grafana_status
+    - sensor.docker_grafana_state
+    - switch.docker_grafana
+
+app_hydra2:
+  name: Hydra 2
+  entities:
+    - sensor.docker_hydra2_memory
+    - sensor.docker_hydra2_status
+    - sensor.docker_hydra2_state
+    - switch.docker_hydra2
+
+app_influxdb:
+  name: InfluxDB
+  entities:
+    - sensor.docker_influxdb_memory
+    - sensor.docker_influxdb_status
+    - sensor.docker_influxdb_state
+    - switch.docker_influxdb
+
+app_mosquitto:
+  name: Mosquitto
+  entities:
+    - sensor.docker_mosquitto_memory
+    - sensor.docker_mosquitto_status
+    - sensor.docker_mosquitto_state
+    - switch.docker_mosquitto
+
+app_nzbget:
+  name: NZBGet
+  entities:
+    - sensor.docker_nzbget_memory
+    - sensor.docker_nzbget_status
+    - sensor.docker_nzbget_state
+    - switch.docker_nzbget
+
+app_nodered:
+  name: Node-RED
+  entities:
+    - sensor.docker_node_red_memory
+    - sensor.docker_node_red_status
+    - sensor.docker_node_red_state
+    - switch.docker_node_red
+
+app_openzwave:
+  name: OpenZWave Daemon
+  entities:
+    - sensor.docker_ozwd_memory
+    - sensor.docker_ozwd_status
+    - sensor.docker_ozwd_state
+    - switch.docker_ozwd
+
+app_organizr:
+  name: Organizr
+  entities:
+    - sensor.docker_organizr_memory
+    - sensor.docker_organizr_status
+    - sensor.docker_organizr_state
+    - switch.docker_organizr
+
+app_pihole:
+  name: Pi Hole
+  entities:
+    - sensor.docker_pihole_memory
+    - sensor.docker_pihole_status
+    - sensor.docker_pihole_state
+    - switch.docker_pihole
+
+app_plex:
+  name: Plex
+  entities:
+    - sensor.docker_plex_memory
+    - sensor.docker_plex_status
+    - sensor.docker_plex_state
+    - switch.docker_plex
+
+app_radarr:
+  name: Radarr
+  entities:
+    - sensor.docker_radarr_memory
+    - sensor.docker_radarr_status
+    - sensor.docker_radarr_state
+    - switch.docker_radarr
+
+app_swag:
+  name: Secure Web Application Gateway
+  entities:
+    - sensor.docker_swag_memory
+    - sensor.docker_swag_status
+    - sensor.docker_swag_state
+    - switch.docker_swag
+
+app_sonarr:
+  name: Sonarr
+  entities:
+    - sensor.docker_sonarr_memory
+    - sensor.docker_sonarr_status
+    - sensor.docker_sonarr_state
+    - switch.docker_sonarr
+
+app_tautulli:
+  name: Tautulli
+  entities:
+    - sensor.docker_tautulli_memory
+    - sensor.docker_tautulli_status
+    - sensor.docker_tautulli_state
+    - switch.docker_tautulli
+
+app_wireguard:
+  name: Wireguard
+  entities:
+    - sensor.docker_wireguard_memory
+    - sensor.docker_wireguard_status
+    - sensor.docker_wireguard_state
+    - switch.docker_wireguard
+
+app_wordpress:
+  name: Wordpress
+  entities:
+    - sensor.docker_wordpress_memory
+    - sensor.docker_wordpress_status
+    - sensor.docker_wordpress_state
+    - switch.docker_wordpress
+
+app_zwavejs2mqtt:
+  name: ZWave Gateway
+  entities:
+    - sensor.docker_zwavejs2mqtt_memory
+    - sensor.docker_zwavejs2mqtt_status
+    - sensor.docker_zwavejs2mqtt_state
+    - switch.docker_zwavejs2mqtt
+
+app_jackett:
+  name: Jackett
+  entities:
+    - sensor.docker_jackett_memory
+    - sensor.docker_jackett_status
+    - sensor.docker_jackett_state
+    - switch.docker_jackett
+

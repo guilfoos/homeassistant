@@ -1,0 +1,89 @@
+homeassistant:
+  packages: !include_dir_merge_named packages/
+
+# Loads default set of integrations. Do not remove.
+default_config:
+
+# Text to speech
+tts:
+  - platform: google_translate
+
+automation: !include automations.yaml
+script: !include scripts.yaml
+scene: !include scenes.yaml
+group: !include groups.yaml
+
+monitor_docker:
+  - name: Docker
+    rename:
+      grafana: Grafana
+      db_ha: Database Home Assistant
+      home-assistant: Home Assistant
+      influxdb: InfluxDB
+      mosquitto: Mosquitto
+      node-red: "Node-RED"
+      ozwd: OpenZWave Daemon
+      zwavejs2mqtt: ZWave Gateway
+      wireguard: WireGuard
+      deluge: Deluge
+      swag: Secure Web Application Gateway
+      pihole: PiHole
+      radarr: Radarr
+      sonarr: Sonarr
+      wordpress: Wordpress
+      organizr: Organizr
+      dnsexit: DNSExit
+      nzbget: NZBGet
+      bazarr: Bazarr
+      hydra2: Hydra2
+      plex: Plex
+      tautulli: Tautulli
+    monitored_conditions:
+      - version
+      - containers_running
+      - containers_total
+      - state
+      - status
+      - memory
+
+config_editor:
+
+sengledapi:
+  username: !secret sengled_user
+  password: !secret sengled_password
+  country: us
+  wifi: true
+
+circadian_lighting:
+
+switch:
+  - platform: circadian_lighting
+    lights_rgb:
+      - light.back_porch
+
+recorder:
+  purge_keep_days: 30
+  auto_purge: true
+  db_url: !secret db_url
+  exclude:
+    entities:
+      - person.myname
+
+history:
+
+influxdb:
+  api_version: 2
+  ssl: false
+  host: !secret influxdb_host
+  port: 3004
+  token: !secret influxdb_token
+  organization: Ubuntu
+  bucket: homeassistant
+  tags:
+    source: HomeAssistant
+  tags_attributes:
+    - friendly_name
+  default_measurement: units
+  exclude:
+    entities:
+      - person.myname
