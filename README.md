@@ -34,3 +34,4 @@ More hardware to be listed as I get integrations set up at the new house.
 **Custom Automations**
 
 - Monitor washing machine power load and door state to know when clothes are clean and need to be moved to the dryer
+
