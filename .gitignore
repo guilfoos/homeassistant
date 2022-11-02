@@ -5,12 +5,7 @@
 !*.yaml
 !.gitignore
 !*.md
-!packages
-!www
-!tts
-!blueprints
-!deps
-!custom_components
+!packages/
 
 # Ignore folders.
 .storage
