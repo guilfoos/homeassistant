@@ -1,0 +1,20 @@
+- name: Lighting - Kitchen - Day
+  entities:
+    light.kitchen_1:
+      state: true
+
+- name: Lighting - Kitchen - Evening
+  entities:
+    light.kitchen_1:
+      state: true
+    light.back_porch:
+      state: true
+
+- name: Lighting - Kitchen - Night
+  entities:
+    switch.circadian_lighting_circadian_lighting:
+      state: off
+    light.back_porch:
+      state: true
+      color_temp: 443
+      brightness: 1

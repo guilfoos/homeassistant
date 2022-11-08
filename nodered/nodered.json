@@ -1,0 +1,473 @@
+[
+    {
+        "id": "6b5168099d6e8e5b",
+        "type": "tab",
+        "label": "Kitchen Light Management",
+        "disabled": false,
+        "info": "",
+        "env": []
+    },
+    {
+        "id": "2925ef3df452c721",
+        "type": "server-events",
+        "z": "6b5168099d6e8e5b",
+        "name": "",
+        "server": "717844321eb61ed9",
+        "version": 2,
+        "eventType": "zha_event",
+        "exposeToHomeAssistant": false,
+        "eventData": "{}",
+        "haConfig": [
+            {
+                "property": "name",
+                "value": ""
+            },
+            {
+                "property": "icon",
+                "value": ""
+            }
+        ],
+        "waitForRunning": true,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "eventData"
+            },
+            {
+                "property": "topic",
+                "propertyType": "msg",
+                "value": "$outputData(\"eventData\").event_type",
+                "valueType": "jsonata"
+            }
+        ],
+        "event_type": "",
+        "x": 110,
+        "y": 40,
+        "wires": [
+            [
+                "698e5f39ef3bf27d"
+            ]
+        ]
+    },
+    {
+        "id": "698e5f39ef3bf27d",
+        "type": "function",
+        "z": "6b5168099d6e8e5b",
+        "name": "Is this the right dimmer?",
+        "func": "var dimmerId = \"ff:ff:00:0f:e7:fd:94:48:1:0x0008\";\nvar eventId = msg.payload.event.unique_id;\nvar state = msg.payload.event.args[0];\nvar onOrDimmed = msg.payload.event.args[1];\nif (eventId == dimmerId) {\n    if (onOrDimmed == \"7\") {\n        return [msg, null, null];\n    } else {\n        msg.payload.dimmerNumber = state;\n        return [null, msg, null];\n    }\n} else {\n    return [null, null, msg];\n}",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 100,
+        "wires": [
+            [
+                "d733c04876ffe47b"
+            ],
+            [
+                "a4fe5dfacc74f59c"
+            ],
+            []
+        ]
+    },
+    {
+        "id": "a8f9877d05061e3a",
+        "type": "api-call-service",
+        "z": "6b5168099d6e8e5b",
+        "name": "turn off lights",
+        "server": "717844321eb61ed9",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_off",
+        "areaId": [
+            "back_yard",
+            "kitchen"
+        ],
+        "deviceId": [
+            "15c0781e45b721f628e28feedd10455e"
+        ],
+        "entityId": [
+            "light.back_porch",
+            "light.kitchen_1"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 670,
+        "y": 40,
+        "wires": [
+            [
+                "424ac057e1e65e53"
+            ]
+        ]
+    },
+    {
+        "id": "d7fd2162244bb98a",
+        "type": "api-call-service",
+        "z": "6b5168099d6e8e5b",
+        "name": "",
+        "server": "717844321eb61ed9",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "light",
+        "service": "turn_on",
+        "areaId": [
+            "back_yard",
+            "kitchen"
+        ],
+        "deviceId": [
+            "15c0781e45b721f628e28feedd10455e"
+        ],
+        "entityId": [
+            "light.back_porch"
+        ],
+        "data": "{\"brightness\":msg.payload.dimmerNumber}",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 750,
+        "y": 180,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d733c04876ffe47b",
+        "type": "api-current-state",
+        "z": "6b5168099d6e8e5b",
+        "name": "on/off",
+        "server": "717844321eb61ed9",
+        "version": 3,
+        "outputs": 2,
+        "halt_if": "true",
+        "halt_if_type": "bool",
+        "halt_if_compare": "is",
+        "entity_id": "group.dimmer_kitchen",
+        "state_type": "habool",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 470,
+        "y": 40,
+        "wires": [
+            [
+                "a8f9877d05061e3a"
+            ],
+            [
+                "603f711c17b5905d"
+            ]
+        ]
+    },
+    {
+        "id": "603f711c17b5905d",
+        "type": "api-current-state",
+        "z": "6b5168099d6e8e5b",
+        "name": "circadian value",
+        "server": "717844321eb61ed9",
+        "version": 3,
+        "outputs": 1,
+        "halt_if": "",
+        "halt_if_type": "num",
+        "halt_if_compare": "is",
+        "entity_id": "sensor.circadian_values",
+        "state_type": "num",
+        "blockInputOverrides": false,
+        "outputProperties": [
+            {
+                "property": "payload",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entityState"
+            },
+            {
+                "property": "data",
+                "propertyType": "msg",
+                "value": "",
+                "valueType": "entity"
+            }
+        ],
+        "for": "0",
+        "forType": "num",
+        "forUnits": "minutes",
+        "override_topic": false,
+        "state_location": "payload",
+        "override_payload": "msg",
+        "entity_location": "data",
+        "override_data": "msg",
+        "x": 600,
+        "y": 100,
+        "wires": [
+            [
+                "e16fb5a186d58810"
+            ]
+        ]
+    },
+    {
+        "id": "e16fb5a186d58810",
+        "type": "function",
+        "z": "6b5168099d6e8e5b",
+        "name": "Select Scene",
+        "func": "var circadian_value = msg.payload;\nif (circadian_value < -85) {\n    return [null, null, msg];\n}\nif (circadian_value > 0) {\n    return [msg, null, null];\n} else {\n    return [null, msg, null];\n}",
+        "outputs": 3,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 790,
+        "y": 120,
+        "wires": [
+            [
+                "29eac6c6607cc9b9"
+            ],
+            [
+                "36b68f77c315c62a"
+            ],
+            [
+                "888b96a92a9ccc8f"
+            ]
+        ]
+    },
+    {
+        "id": "29eac6c6607cc9b9",
+        "type": "api-call-service",
+        "z": "6b5168099d6e8e5b",
+        "name": "Day",
+        "server": "717844321eb61ed9",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "homeassistant",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.lighting_kitchen_day"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 970,
+        "y": 100,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "36b68f77c315c62a",
+        "type": "api-call-service",
+        "z": "6b5168099d6e8e5b",
+        "name": "Evening",
+        "server": "717844321eb61ed9",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "homeassistant",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.lighting_kitchen_evening"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 980,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "888b96a92a9ccc8f",
+        "type": "api-call-service",
+        "z": "6b5168099d6e8e5b",
+        "name": "Night",
+        "server": "717844321eb61ed9",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "homeassistant",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "scene.lighting_kitchen_night"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 970,
+        "y": 220,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "424ac057e1e65e53",
+        "type": "api-call-service",
+        "z": "6b5168099d6e8e5b",
+        "name": "Turn on Circadian Lighting",
+        "server": "717844321eb61ed9",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_on",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.circadian_lighting_circadian_lighting_kitchen"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 920,
+        "y": 40,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "f052e032549b010c",
+        "type": "api-call-service",
+        "z": "6b5168099d6e8e5b",
+        "name": "Turn Off Circadian Lighting",
+        "server": "717844321eb61ed9",
+        "version": 5,
+        "debugenabled": false,
+        "domain": "switch",
+        "service": "turn_off",
+        "areaId": [],
+        "deviceId": [],
+        "entityId": [
+            "switch.circadian_lighting_circadian_lighting_kitchen"
+        ],
+        "data": "",
+        "dataType": "jsonata",
+        "mergeContext": "",
+        "mustacheAltTags": false,
+        "outputProperties": [],
+        "queue": "none",
+        "x": 520,
+        "y": 180,
+        "wires": [
+            [
+                "d7fd2162244bb98a",
+                "67d78091a0984f1b"
+            ]
+        ]
+    },
+    {
+        "id": "a4fe5dfacc74f59c",
+        "type": "function",
+        "z": "6b5168099d6e8e5b",
+        "name": "Dimmable Entities",
+        "func": "const globalHomeAssistant = global.get(\"homeassistant\");\nconst ha = globalHomeAssistant.homeAssistant;\nconst groupEntity = ha.states[\"group.dimmer_kitchen\"];\nconst entitiesToUpdate = [];\ngroupEntity.attributes.entity_id.forEach((entity_id) => {\n    const isLight = entity_id.split(\".\")[0] === \"light\";\n    const state = ha.states[entity_id].state;\n    if (isLight && state === \"on\") {\n        entitiesToUpdate.push(entity_id);\n    }\n});\nmsg.entitiesToUpdate = entitiesToUpdate.join(\", \");\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "libs": [],
+        "x": 270,
+        "y": 180,
+        "wires": [
+            [
+                "f052e032549b010c",
+                "ffc9ebe2d36c9608"
+            ]
+        ]
+    },
+    {
+        "id": "ffc9ebe2d36c9608",
+        "type": "debug",
+        "z": "6b5168099d6e8e5b",
+        "name": "debug 1",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 520,
+        "y": 260,
+        "wires": []
+    },
+    {
+        "id": "67d78091a0984f1b",
+        "type": "debug",
+        "z": "6b5168099d6e8e5b",
+        "name": "debug 2",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "false",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 740,
+        "y": 280,
+        "wires": []
+    },
+    {
+        "id": "717844321eb61ed9",
+        "type": "server",
+        "name": "Home Assistant",
+        "version": 5,
+        "addon": false,
+        "rejectUnauthorizedCerts": true,
+        "ha_boolean": "y|yes|true|on|home|open",
+        "connectionDelay": true,
+        "cacheJson": true,
+        "heartbeat": false,
+        "heartbeatInterval": "30",
+        "areaSelector": "friendlyName",
+        "deviceSelector": "friendlyName",
+        "entitySelector": "friendlyName",
+        "statusSeparator": ": ",
+        "statusYear": "hidden",
+        "statusMonth": "short",
+        "statusDay": "numeric",
+        "statusHourCycle": "default",
+        "statusTimeFormat": "h:m",
+        "enableGlobalContextStore": false
+    }
+]
