@@ -12,7 +12,7 @@
 
 - name: Lighting - Kitchen - Night
   entities:
-    switch.circadian_lighting_circadian_lighting:
+    switch.circadian_lighting_circadian_lighting_kitchen:
       state: off
     light.back_porch:
       state: true

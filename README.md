@@ -19,7 +19,7 @@ All of my applications run in Docker containers. I've found it's much easier to 
 
 - 1 Sengled WiFi RGB bulb
 
-- 1 Tuya BR30 white smart bulb (Euarne branded)
+- 1 Tuya BR30 WiFi white smart bulb (Euarne branded)
 
 - 1 TP-Link Kasa Smart switch (KP115)
 
