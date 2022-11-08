@@ -59,7 +59,7 @@ washing_machine_statedetection:
       trigger:
         - platform: numeric_state
           entity_id: sensor.washing_machine_current_consumption
-          below: 6
+          below: 3
       condition:
         condition: and
         conditions:

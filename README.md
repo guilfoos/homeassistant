@@ -1,5 +1,7 @@
 # HOME ASSISTANT #
 
+![](https://img.shields.io/badge/Home%20Assistant-2022.10.5-blue.svg)| [![](https://img.shields.io/github/issues-raw/zinknotthemetal/homeassistant.svg)](https://github.com/guilfoos/HomeAssistant/issues) | ![](https://img.shields.io/github/last-commit/guilfoos/homeassistant.svg)
+
 This Github repository is to help me maintain a known-good version I can roll-back to as I continue to improve my integrations. And a little bit of DR.
 
 For others, I mostly edit in vi (I'm a bit of a dinosaur), but there is a nice HACS plugin that gives you an editor you can use on a Dashboard. When I add an integration and get everything working, I can commit the changes here so that if further tinkering breaks somethign I can recover.
@@ -13,13 +15,17 @@ All of my applications run in Docker containers. I've found it's much easier to 
 **My hardware:**
 - 1 RPi4 8GB, running Ubuntu on a 32GB SD card and a 8TB external HDD for docker configuration and media files. Home Assistant and all other helper applications run in Docker containers.
 
-- Nortek USB Zigbee/ZWave hub
+- Sonoff USB Zigbee 3.0 hub
 
 - 1 Sengled WiFi RGB bulb
+
+- 1 Tuya BR30 white smart bulb (Euarne branded)
 
 - 1 TP-Link Kasa Smart switch (KP115)
 
 - 1 Aqara Zigbee door/window sensor
+
+- 1 Lutron Aurora Zigbee dimmer switch
 
 - 2 Google Nest Hubs
 
@@ -29,9 +35,10 @@ All of my applications run in Docker containers. I've found it's much easier to 
 
 - 1 Chromecast
 
-More hardware to be listed as I get integrations set up at the new house.
+More hardware to be listed as I get integrations set up at the new house. These items and many more are integrated with Google Assistant
 
 **Custom Automations**
 
 - Monitor washing machine power load and door state to know when clothes are clean and need to be moved to the dryer
 
+- Proof-of-concept integration of Aurora switch with Sengled & Tuya smart bulbs

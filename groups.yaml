@@ -1,3 +1,10 @@
+dimmer_kitchen:
+  name: Dimmer Kitchen Lights
+  icon: mdi:lightbulb-group-outline
+  entities:
+    - light.back_porch
+    - light.kitchen_1
+
 app_homeassistant:
   name: Home Assistant
   entities:
