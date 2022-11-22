@@ -1,10 +1,3 @@
-dimmer_kitchen:
-  name: Dimmer Kitchen Lights
-  icon: mdi:lightbulb-group-outline
-  entities:
-    - light.back_porch
-    - light.kitchen_1
-
 app_homeassistant:
   name: Home Assistant
   entities:
@@ -69,13 +62,13 @@ app_influxdb:
     - sensor.docker_influxdb_state
     - switch.docker_influxdb
 
-app_mosquitto:
-  name: Mosquitto
+app_mqtt:
+  name: MQTT
   entities:
-    - sensor.docker_mosquitto_memory
-    - sensor.docker_mosquitto_status
-    - sensor.docker_mosquitto_state
-    - switch.docker_mosquitto
+    - sensor.docker_zigbee2mqtt_memory
+    - sensor.docker_zigbee2mqtt_status
+    - sensor.docker_zigbee2mqtt_state
+    - switch.docker_zigbee2mqtt
 
 app_nzbget:
   name: NZBGet
@@ -92,14 +85,6 @@ app_nodered:
     - sensor.docker_node_red_status
     - sensor.docker_node_red_state
     - switch.docker_node_red
-
-app_openzwave:
-  name: OpenZWave Daemon
-  entities:
-    - sensor.docker_ozwd_memory
-    - sensor.docker_ozwd_status
-    - sensor.docker_ozwd_state
-    - switch.docker_ozwd
 
 app_organizr:
   name: Organizr
@@ -172,14 +157,6 @@ app_wordpress:
     - sensor.docker_wordpress_status
     - sensor.docker_wordpress_state
     - switch.docker_wordpress
-
-app_zwavejs2mqtt:
-  name: ZWave Gateway
-  entities:
-    - sensor.docker_zwavejs2mqtt_memory
-    - sensor.docker_zwavejs2mqtt_status
-    - sensor.docker_zwavejs2mqtt_state
-    - switch.docker_zwavejs2mqtt
 
 app_jackett:
   name: Jackett

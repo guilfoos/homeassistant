@@ -104,7 +104,7 @@ washing_machine_statedetection:
         # I've setup a template sensor to change make the binary_sensor report open and closed
         # instead of 1 and 0
         - platform: state
-          entity_id: binary_sensor.lumi_lumi_sensor_magnet_aq2_opening
+          entity_id: binary_sensor.washing_machine_door_contact
           to: 'on'
       condition:
         condition: and

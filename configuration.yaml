@@ -26,6 +26,10 @@ panel_iframe:
     title: "Node Red"
     icon: mdi:sitemap
     url: https://www.guilfoos.com:1880
+  zigbee:
+    title: "Zigbee"
+    icon: mdi:sitemap-outline
+    url: http://192.168.0.10:8082
 
 monitor_docker:
   - name: Docker
@@ -34,10 +38,8 @@ monitor_docker:
       db_ha: Database Home Assistant
       home-assistant: Home Assistant
       influxdb: InfluxDB
-      mosquitto: Mosquitto
       node-red: "Node-RED"
-      ozwd: OpenZWave Daemon
-      zwavejs2mqtt: ZWave Gateway
+      zigbee2mqtt: Zigbee Gateway
       wireguard: WireGuard
       deluge: Deluge
       swag: Secure Web Application Gateway
